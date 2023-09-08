@@ -164,6 +164,7 @@ class TextTokenizer:
         return fields[:-1]
 
     def __call__(self, text, strip=True) -> List[List[str]]:
+        # this function is modified for prosa
         if isinstance(text, str):
             text = [text]
 
@@ -171,6 +172,12 @@ class TextTokenizer:
             text, separator=self.separator, strip=strip, njobs=1
         )
         return [self.to_list(p) for p in phonemized]
+    
+        # if isinstance(text, str):
+        #     text = [text]
+        
+        # phonemized = [char if char != ' ' else '_' for char in text[0]]
+        # return [phonemized]
 
 
 def tokenize_text(tokenizer: TextTokenizer, text: str) -> List[str]:

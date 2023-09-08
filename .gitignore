@@ -11,3 +11,12 @@ egs/*/data
 egs/libritts/prompts/*.png
 valle/version.py
 infer/
+/dev_env
+/icefall
+egs/adi_audiobook
+egs/prosa
+egs/libritts/download
+egs/adi_audiobook/waves
+egs/adi_audiobook/waves_24k
+egs/ljspeech/download
+egs/pretrain

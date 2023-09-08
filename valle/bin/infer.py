@@ -130,8 +130,8 @@ def load_model(checkpoint, device):
     checkpoint = torch.load(checkpoint, map_location=device)
 
     args = AttributeDict(checkpoint)
+    
     model = get_model(args)
-
     missing_keys, unexpected_keys = model.load_state_dict(
         checkpoint["model"], strict=True
     )
@@ -153,6 +153,7 @@ def main():
     if torch.cuda.is_available():
         device = torch.device("cuda", 0)
     model, text_tokens = load_model(args.checkpoint, device)
+
     text_collater = get_text_token_collater(text_tokens)
 
     audio_tokenizer = AudioTokenizer()
@@ -229,8 +230,7 @@ def main():
                 )
             ]
         )
-
-        # synthesis
+        
         if args.continual:
             assert text == ""
             encoded_frames = model.continual(
